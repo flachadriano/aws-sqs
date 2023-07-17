@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: consummer
+  name: consummer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consummer
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: consummer
+    spec:
+      containers:
+      - image: public.ecr.aws/u3c2v2u1/patient-consummer:latest
+        name: patient-consummer
+        resources: {}
+        volumeMounts:
+        - name: source-code-claim
+          mountPath: /var/local/www
+      volumes:
+      - name: source-code-claim
+        hostPath:
+          path: /home/flach/projects/aws-sqs/consummer
+status: {}

@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  consummer:
+    image: patient-provider
+    build: .
+    ports:
+      - "8081:8080"

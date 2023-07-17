@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: consummer
+  name: consummer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consummer
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: consummer
+    spec:
+      containers:
+      - image: public.ecr.aws/u3c2v2u1/patient-consummer:latest
+        name: patient-consummer
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: consummer
+  name: consummer
+  namespace: default
+  resourceVersion: "3105"
+  uid: 93f60b71-fbe2-45b9-8b18-fa0e1cf1d334
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: consummer
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

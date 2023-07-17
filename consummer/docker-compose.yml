@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  consummer:
+    image: public.ecr.aws/u3c2v2u1/patient-consummer
+    build: .
+    ports:
+      - "8080:8080"
